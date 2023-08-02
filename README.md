@@ -1,4 +1,4 @@
-# Padrões Comportamentais em PHP - Alura Design Patterns
+# Design Patterns em PHP: padrões comportamentais - Alura
 
 Neste projeto, foram aplicados diversos padrões comportamentais em PHP para exemplificar o uso de cada um deles. Os padrões comportamentais são `design patterns` que lidam com a comunicação, a delegação de responsabilidades e a interação entre objetos.
 
