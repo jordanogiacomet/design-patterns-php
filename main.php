@@ -3,6 +3,7 @@
 
 use Alura\DesignPattern\CalculadoraDeImpostos;
 use Alura\DesignPattern\CalculadoraDeDescontos;
+use Alura\DesignPattern\EstadosOrcamento\Aprovado;
 use Alura\DesignPattern\Orcamento;
 use Alura\DesignPattern\Impostos\Icms;
 use Alura\DesignPattern\Impostos\Iss;
@@ -15,4 +16,6 @@ $orcamento = new Orcamento();
 $orcamento->numeroDeItens = 6;
 $orcamento-> valor = 100;
 
-echo $calculadora->calculaDescontos($orcamento);
+$orcamento->aplicaDescontoExtra();
+
+echo $orcamento->valor;
