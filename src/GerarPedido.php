@@ -2,28 +2,43 @@
 
 namespace Alura\DesignPattern;
 
-class GerarPedido implements Command{
-
-    private string $nomeCliente;
+class GerarPedido
+{
     private float $valorOrcamento;
-    private int $numeroDeItens;
+    private int $numeroItens;
+    private string $nomeCliente;
 
-    public function __construct(string $nomeCliente, float $valorOrcamento, int $numeroDeItens){
-        $this->nomeCliente = $nomeCliente;
+    public function __construct(
+        float $valorOrcamento,
+        int $numeroItens,
+        string $nomeCliente
+    ) {
         $this->valorOrcamento = $valorOrcamento;
-        $this->numeroDeItens = $numeroDeItens;
+        $this->numeroItens = $numeroItens;
+        $this->nomeCliente = $nomeCliente;
     }
 
-    public function execute(){
-        $orcamento = new Orcamento();
+    /**
+     * @return float
+     */
+    public function getValorOrcamento(): float
+    {
+        return $this->valorOrcamento;
+    }
 
-        $orcamento->valor = $this->valorOrcamento;
-        $orcamento->numeroDeItens = $this->numeroDeItens;
+    /**
+     * @return int
+     */
+    public function getNumeroItens(): int
+    {
+        return $this->numeroItens;
+    }
 
-        $pedido = new Pedido();
-
-        $pedido->nomeCliente = $this->nomeCliente;
-        $pedido->dataFinalizacao = new \DateTimeImmutable();
-        $pedido->orcamento = $orcamento;
+    /**
+     * @return string
+     */
+    public function getNomeCliente(): string
+    {
+        return $this->nomeCliente;
     }
 }

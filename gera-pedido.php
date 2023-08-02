@@ -1,13 +1,17 @@
 <?php
 
-use Alura\DesignPattern\{Orcamento, Pedido, GerarPedido};
+require_once 'vendor/autoload.php';
 
-require 'vendor/autoload.php';
+use Alura\DesignPattern\{GerarPedido, GerarPedidoHandler, Orcamento, Pedido};
+use Alura\DesignPattern\AcoesAoGerarPedidos\CriarLogDoPedido;
+use Alura\DesignPattern\AcoesAoGerarPedidos\CriarPedidoNoBanco;
 
 $valorOrcamento = (float)$argv[1];
 $numeroDeItens = (int)$argv[2];
 $nomeCliente = $argv[3];
 
-$pedido = new GerarPedido($nomeCliente, $valorOrcamento, $numeroDeItens);
-
-echo "Pedido gerado com sucesso!" . PHP_EOL;
+$gerarPedido = new GerarPedido($valorOrcamento, $numeroDeItens, $nomeCliente);
+$gerarPedidoHandler = new GerarPedidoHandler();
+$gerarPedidoHandler->adicionaAcaoAoGerarPedido(new CriarPedidoNoBanco());
+$gerarPedidoHandler->adicionaAcaoAoGerarPedido(new CriarLogDoPedido());
+$gerarPedidoHandler->execute($gerarPedido);
